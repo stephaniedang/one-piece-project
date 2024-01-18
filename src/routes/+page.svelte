@@ -132,9 +132,9 @@
 		color: #2e63a4;
 	}
 
-	.brown {
+	/* .brown {
 		color: #af6528;
-	}
+	} */
 
 	.gold {
 		color: #a47e1b;
@@ -267,10 +267,10 @@
 
 	/* media queries */
 	@media screen and (max-width: 1450px) {
-    #main-title {
+    .main-title {
         font-size: 46px;
     }
-    #sub-title {
+    .sub-title {
         font-size: 19px;
     }
 	}
@@ -320,8 +320,8 @@
     .intro-container, .story-intro, .divider-line, .outro  {
         width: calc(100% - 20px);
     }
-    .manga-mobile-img {
+    /* .manga-mobile-img {
         transform: translateX(-40px);
-    }
+    } */
 	}
 </style>
