@@ -23,5 +23,11 @@
 		"svelte": "^4.2.7",
 		"vite": "^5.0.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@fontsource/barlow": "^5.0.8",
+		"@fontsource/barlow-semi-condensed": "^5.0.18",
+		"@fontsource/quicksand": "^5.0.16",
+		"d3": "^7.8.5"
+	}
 }
