@@ -54,7 +54,7 @@
 		<div class="chart-intro-text">
 			<p>
 				In One Piece, <span class="anime blue character">Devil Fruits</span> grant unique abilities at a high cost. 
-				They're categorized into <span class="anime blue character">Logia, Paramecia, and Zoan types</span>. The visualization 
+				They're categorized into <span class="anime blue character">Logia, Paramecia, and Zoan </span>types. The visualization 
 				below is my version of cataloging these fruits. Each hexagon, colored 
 				based on the character's chapter appearances up until <span class="anime blue character">Chapter 1104</span>, 
 				reveals more about the fruit when <span class="anime blue character">hovered over</span>. Go forth and explore this 

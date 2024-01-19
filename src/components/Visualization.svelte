@@ -15,6 +15,7 @@
   const height = 600;
   const sides = 6;
   const fixedRadius = 13;
+  let clusterHeight = [];
 
   // function to process CSV data
   const processData = (csvData) => {
@@ -49,7 +50,7 @@
       const legendY = 230;
       const legendXStart = -85;
 
-      // Create legend group
+      // create legend group
       const legendGroup = groupG.append('g')
                                 .attr('transform', `translate(0, ${legendY})`);
 
@@ -80,15 +81,15 @@
       colorArray.forEach((color, index) => {
           const position = legendXStart + index * 60;
 
-          // Calculate points for hexagon
+          // calculate points for hexagon
           const points = polygonPoints(sides, 10, 0, 0).map(p => `${p[0] + position},${p[1]}`).join(' ');
 
-          // Append hexagon
+          // append hexagon
           legendGroup.append('path')
                       .attr('d', `M${points}Z`)
                       .attr('fill', color);
 
-          // Append label
+          // append label
           legendGroup.append('text')
                       .attr('x', position - 2)
                       .attr('y', 25)
@@ -101,7 +102,7 @@
       });
   }
 
-  // Function to create the chart
+  // function to create the chart
   const createChart = (data) => {
     d3.select('#chart').selectAll("*").remove();
 
@@ -136,22 +137,37 @@
 
     pack(root);
 
-    // const segmentWidth = width / root.children.length;
-    // const currentWidth = window.innerWidth;
+    const calculatePositions = (currentWidth, isMobile, root) => {
+      clusterHeight = [];
 
-    const calculatePositions = (currentWidth) => {
-      // Calculate new positions based on currentWidth
+      // mobile specific calculations
+      if (isMobile) {
+        let totalHeight = 0;
+
+        root.children.map((cluster, index) => {
+          const numElements = cluster.children.length;
+          const rows = Math.ceil(Math.sqrt(numElements));
+          const height = rows * (fixedRadius * 2) + (index > 0 ? 275 : 225);
+          totalHeight += height;
+          clusterHeight.push(height);
+        });
+
+        return { segmentWidth: currentWidth, totalHeight: totalHeight + 125 }
+      }
+      // non-mobile calculations
       const segmentWidth = currentWidth / root.children.length;
-      // Other calculations as needed
-      return { segmentWidth }; // Return calculated values
+      return { segmentWidth, totalHeight: height }; 
     };
 
     const currentWidth = window.innerWidth;
-    const { segmentWidth } = calculatePositions(currentWidth)
+    const isMobile = currentWidth < 950;
+    const { segmentWidth, totalHeight } = calculatePositions(currentWidth, isMobile, root)
 
     const svg = d3.select('#chart')
-                  .attr('viewBox', `0 0 ${currentWidth} ${height}`)
+                  .attr('viewBox', `0 0 ${currentWidth} ${totalHeight}`)
                   .style('background', '#f2e9e4');
+
+    let accumulatedHeight = 100;
 
     // svg.append('rect')
     //     .attr('x', 0)
@@ -161,8 +177,15 @@
     //     .attr('fill', '#c2b5a8');
 
     root.children.forEach((group, index) => {
-        const groupX = (segmentWidth * index) + (segmentWidth / 2);
-        const groupY = height / 2.5;
+        const groupX = isMobile ? currentWidth / 2 : (segmentWidth * index) + (segmentWidth / 2);
+        const groupY = isMobile ? accumulatedHeight + 100 : height / 2.5;
+        console.log('groupY:', groupY);
+        console.log('clusterHeight:', clusterHeight);
+        console.log('accumulatedHeight:', accumulatedHeight);
+
+        if (isMobile) {
+          accumulatedHeight += clusterHeight[index];
+        }
 
         // create a group for each cluster
         const groupG = svg.append('g')
@@ -210,7 +233,7 @@
                   .on("mouseover", function(event, d) {
                       hexagon.attr('stroke', '#6c757d').attr('stroke-width', 4);
                       
-                      // Set the tooltip data without coordinates first
+                      // set the tooltip data without coordinates first
                       tooltip.set({
                           visible: true,
                           data: {
@@ -223,7 +246,7 @@
                           }
                       });
 
-                      // Delay the positioning to allow for dimension calculations
+                      // delay the positioning to allow for dimension calculations
                       setTimeout(() => adjustTooltipPosition(event, leaf.parent.data.fruitType), 10);
                   })
                   .on("mousemove", function(event) {
@@ -242,7 +265,7 @@
                   let tooltipX;
                   let tooltipY = event.pageY + 10;
 
-                  if (fruitType === 'Logia') {
+                  if (fruitType === 'Logia' && !isMobile) {
                       tooltipX = event.pageX - tooltipRect.width - 10;
                   } else {
                       tooltipX = event.pageX + 10;
@@ -254,6 +277,7 @@
                   if (tooltipY + tooltipRect.height > svgRect.bottom) {
                       tooltipY = event.pageY - tooltipRect.height - 10;
                   }
+
                   tooltip.update(t => ({...t, x: tooltipX, y: tooltipY}));
               }
         });
@@ -290,7 +314,7 @@
   #chart {
     display: block;
     width: 100%;
-    height: 600px;
+    height: auto;
     overflow: hidden;
   }
 </style>
