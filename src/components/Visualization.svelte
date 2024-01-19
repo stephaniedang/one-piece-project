@@ -179,9 +179,6 @@
     root.children.forEach((group, index) => {
         const groupX = isMobile ? currentWidth / 2 : (segmentWidth * index) + (segmentWidth / 2);
         const groupY = isMobile ? accumulatedHeight + 100 : height / 2.5;
-        console.log('groupY:', groupY);
-        console.log('clusterHeight:', clusterHeight);
-        console.log('accumulatedHeight:', accumulatedHeight);
 
         if (isMobile) {
           accumulatedHeight += clusterHeight[index];
@@ -262,20 +259,37 @@
                   const tooltipEl = document.querySelector('.tooltip');
                   const tooltipRect = tooltipEl.getBoundingClientRect();
 
-                  let tooltipX;
+                  let tooltipX = event.pageX + 10;
                   let tooltipY = event.pageY + 10;
 
-                  if (fruitType === 'Logia' && !isMobile) {
-                      tooltipX = event.pageX - tooltipRect.width - 10;
-                  } else {
-                      tooltipX = event.pageX + 10;
-                      if (tooltipX + tooltipRect.width > svgRect.right) {
-                          tooltipX = event.pageX - tooltipRect.width - 10;
-                      }
-                  }
+                  if (isMobile) {
+                    // adjust horizontally if the tooltip goes off the right edge
+                    if (tooltipX + tooltipRect.width > svgRect.right) {
+                        tooltipX = event.pageX - tooltipRect.width - 10;
+                    }
 
-                  if (tooltipY + tooltipRect.height > svgRect.bottom) {
-                      tooltipY = event.pageY - tooltipRect.height - 10;
+                    // adjust horizontally if the tooltip goes off the left edge
+                    if (tooltipX < svgRect.left) {
+                        tooltipX = svgRect.left + 10;
+                    }
+
+                    // adjust vertically if the tooltip goes off the bottom edge
+                    if (tooltipY + tooltipRect.height > window.innerHeight) {
+                        tooltipY = event.pageY - tooltipRect.height - 10;
+                    }
+                  } else {
+                    if (fruitType === 'Logia' && !isMobile) {
+                      tooltipX = event.pageX - tooltipRect.width - 10;
+                    } else {
+                        tooltipX = event.pageX + 10;
+                        if (tooltipX + tooltipRect.width > svgRect.right) {
+                            tooltipX = event.pageX - tooltipRect.width - 10;
+                        }
+                    }
+
+                    if (tooltipY + tooltipRect.height > svgRect.bottom) {
+                        tooltipY = event.pageY - tooltipRect.height - 10;
+                    }
                   }
 
                   tooltip.update(t => ({...t, x: tooltipX, y: tooltipY}));
