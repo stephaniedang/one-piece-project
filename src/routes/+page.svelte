@@ -32,15 +32,15 @@
 
 	<div class="story-intro">
 		<div class="story-intro-text">
-			<p>The story sails with <span class="anime crimson character">Monkey D. Luffy</span>,
+			<p>The story sails with <span class="anime blue character">Monkey D. Luffy</span>,
 				a young, rubber-bodied pirate with boundless enthusiasm and dreams of becoming 
 				the Pirate King. His quest leads him to assemble a diverse and equally ambitious 
-				crew, the <span class="anime crimson character">Straw Hat Pirates</span>. Together, 
+				crew, the <span class="anime blue character">Straw Hat Pirates</span>. Together, 
 				they traverse the Grand Line, a perilous 
 				and wonder-filled sea, in search of the legendary One Piece, a treasure said to 
 				grant immense power and riches. Along their journey, they encounter other pirates, 
 				bounty hunters, and various organizations, facing challenges that test their bonds 
-				and ideals. <span class="anime crimson character">Luffy's</span> unyielding spirit and sense of justice, combined with the 
+				and ideals. <span class="anime blue character">Luffy's</span> unyielding spirit and sense of justice, combined with the 
 				unique abilities and backgrounds of his crew, make their adventures not just 
 				quests for treasure, but also battles for freedom and dreams in a world governed 
 				by both whimsy and harsh realities.
@@ -53,12 +53,12 @@
 	<div class="chart-intro">
 		<div class="chart-intro-text">
 			<p>
-				In One Piece, <span class="anime blue character">Devil Fruits</span> grant unique abilities at a high cost. 
-				They're categorized into <span class="anime blue character">Logia, Paramecia, and Zoan </span>types. The visualization 
+				In One Piece, <span class="anime gold character">Devil Fruits</span> grant unique abilities at a high cost. 
+				They're categorized into <span class="anime gold character">Logia, Paramecia, and Zoan </span>types. The visualization 
 				below is my version of cataloging these fruits. Each hexagon, colored 
-				based on the character's chapter appearances up until <span class="anime blue character">Chapter 1104</span>, 
-				reveals more about the fruit when <span class="anime blue character">hovered over</span>. Go forth and explore this 
-				vibrant world of powers and characters! <span class="anime gold character">Beware spoilers!</span>
+				based on the character's chapter appearances up until <span class="anime gold character">Chapter 1104</span>, 
+				reveals more about the fruit when <span class="anime gold character">hovered over</span>. Go forth and explore this 
+				vibrant world of powers and characters! <span class="anime crimson character">Beware spoilers!</span>
 			</p>
 		</div>
 	</div>
