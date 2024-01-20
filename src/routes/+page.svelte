@@ -10,7 +10,6 @@
 </script>
 
 <div class="outer-container" id="top-outer-container">
-	<!-- Intro -->
 	<div class="intro-container">
 		<img class="logo" src="images/luffylogo.png" alt="one piece luffy smiling"/>
 		<div class="title-container">
@@ -131,10 +130,6 @@
 	.blue {
 		color: #2e63a4;
 	}
-
-	/* .brown {
-		color: #af6528;
-	} */
 
 	.gold {
 		color: #a47e1b;
@@ -262,9 +257,7 @@
     margin-left: auto;
     margin-right: auto;
 	}
-
-	/* chart */
-
+	
 	/* media queries */
 	@media screen and (max-width: 1450px) {
     .main-title {
@@ -320,8 +313,5 @@
     .intro-container, .story-intro, .divider-line, .outro  {
         width: calc(100% - 20px);
     }
-    /* .manga-mobile-img {
-        transform: translateX(-40px);
-    } */
 	}
 </style>
