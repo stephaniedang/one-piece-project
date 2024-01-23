@@ -255,10 +255,8 @@
                   });
 
               function adjustTooltipPosition(event, fruitType) {
-                const svgRect = document.getElementById('chart').getBoundingClientRect();
-                const tooltipEl = document.querySelector('.tooltip');
-                
-                function calculateTooltipPosition() {
+                  const svgRect = document.getElementById('chart').getBoundingClientRect();
+                  const tooltipEl = document.querySelector('.tooltip');
                   const tooltipRect = tooltipEl.getBoundingClientRect();
 
                   let tooltipX = event.pageX + 10;
@@ -295,19 +293,6 @@
                   }
 
                   tooltip.update(t => ({...t, x: tooltipX, y: tooltipY}));
-                }
-
-                if (tooltipEl.offsetHeight > 0 && tooltipEl.offsetWidth > 0) {
-                  calculateTooltipPosition();
-                } else {
-                  const observer = new MutationObserver((mutations, obs) => {
-                    if (tooltipEl.offsetHeight > 0 && tooltipEl.offsetWidth > 0) {
-                      calculateTooltipPosition();
-                      obs.disconnect();
-                    }
-                  });
-                  observer.observe(tooltipEl, { attributes: true, childList: true, subtree: true });
-                }
               }
         });
     });
