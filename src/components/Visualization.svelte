@@ -259,8 +259,8 @@
                   const tooltipEl = document.querySelector('.tooltip');
                   const tooltipRect = tooltipEl.getBoundingClientRect();
 
-                  let tooltipX = event.pageX;
-                  let tooltipY = event.pageY;
+                  let tooltipX = event.pageX + 10;
+                  let tooltipY = event.pageY + 10;
 
                   if (isMobile) {
                     // adjust horizontally if the tooltip goes off the right edge
