@@ -255,6 +255,7 @@
                   });
 
               function adjustTooltipPosition(event, fruitType) {
+                setTimeout(() => {
                   const svgRect = document.getElementById('chart').getBoundingClientRect();
                   const tooltipEl = document.querySelector('.tooltip');
                   const tooltipRect = tooltipEl.getBoundingClientRect();
@@ -293,6 +294,7 @@
                   }
 
                   tooltip.update(t => ({...t, x: tooltipX, y: tooltipY}));
+                }, 100);
               }
         });
     });
